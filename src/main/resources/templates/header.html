@@ -1,0 +1,21 @@
+<div xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div style="width: 100%; height:100%; display:flex; align-items: center; justify-content: space-between;" class="navbar-header">
+                <div><a class="navbar-brand" th:href="@{/}">TODOs List</a></div>
+
+                <div sec:authorize="hasRole('ADMIN')">
+                    Content for administrators
+                </div>
+                <div sec:authorize="hasRole('USER')">
+                    Content for users
+                </div>
+
+                <div style="display: flex; font-size: 18pt; font-family: Arial;" sec:authorize="isAuthenticated()">
+                    Welcome,  <span sec:authentication="principal.firstName">Username</span>!
+                    <div style="margin-right: 15px; margin-left: 15px;"><a th:href="@{/logout}">Logout</a></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
